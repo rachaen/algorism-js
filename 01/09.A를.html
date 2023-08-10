@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let answer = '';
+        [...s].forEach((i) => {
+          if (i === 'A') answer += '#';
+          else answer += i;
+        });
+        return answer;
+      }
+
+      function solution(s) {
+        let answer = '';
+        for (let x of s) {
+          if (x === 'A') answer += '#';
+          else answer += x;
+        }
+        return answer;
+      }
+
+      function solution2(s) {
+        let answer = s; // string은 값이 복사되는 것임. 주소 참조가 아님
+        answer = s.replace(/A/g, '#');
+        return answer;
+      }
+
+      let str = 'BANANA';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

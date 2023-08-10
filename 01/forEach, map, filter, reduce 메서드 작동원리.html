@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // forEach, map, filter, reduce
+
+      /*
+      function forEach(predicate, thisArg){
+        for(let i = 0; i < a.length; i++) {
+          predicate(a[i], i);
+        }
+      }
+      */
+
+      a = [10, 11, 12, 13, 14, 15];
+
+      a.forEach(
+        function (v, i) {
+          console.log(v, i, this);
+        },
+        [1, 2],
+      );
+
+      /*
+      // map은 원본 배열과 같은 길이의 배열을 리턴한다.
+        function map(predicate, thisArg) {
+          let list = [];
+          for(let i = 0; i < a.length; i++) {
+            list.push(predicate(a[i], i));
+          }
+          return list;  // 새로운 배열을 리턴
+        }
+      */
+
+      let answer = a.map(
+        function (v, i) {
+          if (v % 2 === 0) return v; // 짝수만 push될 것 같지만 map이 생성한 리스트는 원본 리스트의 길이와 같음. return 되지 않으면 undefined
+          // return v * v;
+        },
+        [1, 2],
+      );
+      console.log(answer);
+
+      /*
+      // filter는 콜백 함수가 참인 수만 리턴한다. 원본 배열과 길이는 다를 수 있다.
+        function filter(predicate, thisArg) {
+            let list = [];
+            for(let i = 0; i < a.length; i++) {
+              if(predicate(a[i], i)) list.push(a[i]);
+            }
+            return list;  // 새로운 배열을 리턴
+        }
+      */
+      answer = a.filter(
+        function (v, i) {
+          return v % 2 === 0;
+        },
+        [1, 2],
+      );
+      console.log(answer);
+
+      /*
+        reduce는
+        function reduce(predicate, val){
+          let result = val; // 초기화
+          for(let i = 0; i < a.length; i++) {
+            result = predicate(result, a[i]);
+          }
+          return result;
+        }
+      */
+      answer = a.reduce(function (acc, v) {
+        return acc + v;
+      }, 0);
+      console.log(answer);
+    </script>
+  </body>
+</html>
