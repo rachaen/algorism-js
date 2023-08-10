@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        const list = [];
+        let answer = [];
+        s.forEach((i) => {
+          if (!list.includes(i)) list.push(i);
+        });
+        answer = list;
+        return answer;
+      }
+
+      function solution(s) {
+        let answer;
+
+        answer = s.filter(function (v, i) {
+          // if (s.indexOf(v) === i) return true;
+          return s.indexOf(v) === i;
+        });
+
+        return answer;
+      }
+
+      let str = ['good', 'time', 'good', 'time', 'student'];
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

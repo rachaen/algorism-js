@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let answer = '';
+        const list = [];
+        [...s].forEach((i) => {
+          if (!list.includes(i)) {
+            list.push(i);
+            answer += i;
+          }
+        });
+
+        return answer;
+      }
+
+      function solution(s) {
+        let answer = '';
+
+        for (let i = 0; i < s.length; i++) {
+          // console.log(s[i], i, s.indexOf(s[i]));
+          if (s.indexOf(s[i]) === i) answer += s[i];
+        }
+
+        return answer;
+      }
+
+      // 해당 문자가 몇개있는지 출력하기
+      function bonus(s) {
+        let answer = 0;
+        let pos = s.indexOf('k');
+        while (pos !== -1) {
+          answer++;
+          pos = s.indexOf('k', pos + 1); // pos + 1부터 'k'가 없으면 -1을 return
+        }
+
+        return answer;
+      }
+
+      console.log(solution('ksekkset'));
+    </script>
+  </body>
+</html>
