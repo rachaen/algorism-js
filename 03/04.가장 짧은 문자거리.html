@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s, t) {
+        let answer = '';
+        for (let i = 0; i < s.length; i++) {
+          let min = Number.MAX_SAFE_INTEGER;
+          if (s[i] === t) min = 0;
+          else {
+            for (let j = 0; j < s.length; j++) {
+              if (s[j] === t && min > Math.abs(j - i)) min = Math.abs(j - i);
+            }
+          }
+          answer += min.toString() + ' ';
+        }
+        return answer;
+      }
+
+      function mySolution2(s, t) {
+        let answer = [];
+        let len = s.length;
+        let p = len + 1;
+
+        for (let i = 0; i < len; i++) {
+          if (s[i] === t) p = 0;
+          else p++;
+          answer.push(p);
+        }
+
+        p = len + 1;
+        for (let i = len - 1; i >= 0; i--) {
+          if (s[i] === t) p = 0;
+          else {
+            p++;
+            if (p < answer[i]) answer[i] = p;
+          }
+        }
+
+        return answer;
+      }
+
+      // 시간복잡도 O(n)
+      function solution(s, t) {
+        let answer = [];
+        let p = 1000;
+        for (let x of s) {
+          if (x === t) {
+            p = 0;
+            answer.push(p);
+          } else {
+            p++;
+            answer.push(p);
+          }
+        }
+
+        p = 1000;
+        for (let i = s.length - 1; i >= 0; i--) {
+          if (s[i] === t) p = 0;
+          else {
+            p++;
+            answer[i] = Math.min(answer[i], p);
+          }
+        }
+
+        return answer;
+      }
+      let str = 'teachermode';
+      console.log(solution(str, 'e'));
+    </script>
+  </body>
+</html>

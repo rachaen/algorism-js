@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(s) {
+        let answer = '';
+        let beforWord = s[0];
+        let cnt = 1;
+
+        for (let i = 1; i < s.length; i++) {
+          if (beforWord === s[i]) cnt++;
+          else {
+            if (cnt > 1) {
+              answer += beforWord + cnt.toString();
+            } else {
+              answer += beforWord;
+            }
+            cnt = 1;
+            beforWord = s[i];
+          }
+        }
+        if (cnt > 1) {
+          answer += beforWord + cnt.toString();
+        } else {
+          answer += beforWord;
+        }
+        return answer;
+      }
+
+      function solution(s) {
+        let answer = '';
+        let cnt = 1;
+        s = s + ' ';
+        for (let i = 0; i < s.length - 1; i++) {
+          if (s[i] === s[i + 1]) cnt++;
+          else {
+            answer += s[i];
+            if (cnt > 1) answer += String(cnt);
+            cnt = 1;
+          }
+        }
+
+        return answer;
+      }
+
+      let str = 'KKHSSSSSSSE';
+      console.log(solution(str));
+      console.log(mySolution(str));
+    </script>
+  </body>
+</html>
