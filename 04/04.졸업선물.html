@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // m: 예산
+      function mySolution(m, product) {
+        let answer = 0;
+        let N = product.length; // 학생 수
+
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+
+        for (let i = 0; i < N; i++) {
+          let money = m - (product[i][0] / 2 + product[i][1]);
+          let cnt = 0;
+          for (let j = 0; j < N; j++) {
+            if (i === j) continue;
+            if (money < product[i][0] + product[i][1]) break;
+            else {
+              money -= product[i][0] + product[i][1];
+              cnt++;
+            }
+          }
+          answer = Math.max(answer, cnt);
+        }
+
+        return answer;
+      }
+
+      function solution(m, product) {
+        let answer = 0;
+        let n = product.length;
+
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+
+        for (let i = 0; i < n; i++) {
+          let money = m - (product[i][0] / 2 + product[i][1]);
+          let cnt = 1;
+          for (let j = 0; j < n; j++) {
+            if (j !== i && product[j][0] + product[j][1] > money) break;
+            if (j !== i && product[j][0] + product[j][1] <= money) {
+              money -= product[j][0] + product[j][1];
+              cnt++;
+            }
+          }
+          answer = Math.max(answer, cnt);
+        }
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(mySolution(28, arr));
+    </script>
+  </body>
+</html>

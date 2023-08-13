@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(n, arr) {
+        let answer = '';
+        let max = Number.MIN_SAFE_INTEGER;
+        for (let x of arr) {
+          let sum = 0;
+          let copyX = x;
+          while (copyX > 0) {
+            sum += copyX % 10;
+            copyX = Math.floor(copyX / 10);
+          }
+          if (max === sum) {
+            if (x > answer) {
+              answer = x;
+            }
+          } else if (max < sum) {
+            max = sum;
+            answer = x;
+          }
+        }
+        return answer;
+      }
+
+      function solution(n, arr) {
+        let ansewr,
+          max = Number.MIN_SAFE_INTEGER;
+        for (let x of arr) {
+          // let sum = 0,
+          //   temp = x;
+          // while (temp) {
+          //   sum += temp % 10;
+          //   tmp = Math.floor(tmp / 10);
+          // }
+          let sum = x
+            .toString()
+            .split('')
+            .reduce((a, b) => a + Number(b), 0);
+          if (sum > max) {
+            max = sum;
+            answer = x;
+          } else if (sum === max) {
+            if (x > answer) answer = x;
+          }
+        }
+        return answer;
+      }
+
+      let arr = [128, 460, 603, 40, 521, 137, 123];
+      console.log(solution(7, arr));
+    </script>
+  </body>
+</html>
