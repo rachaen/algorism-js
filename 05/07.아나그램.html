@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(str1, str2) {
+        let answer = 'YES';
+        let map1 = new Map();
+        let map2 = new Map();
+        let n = str1.length;
+        for (let i = 0; i < n; i++) {
+          if (map1.has(str1[i])) map1.set(str1[i], map1.get(str1[i]) + 1);
+          else map1.set(str1[i], 1);
+
+          if (map2.has(str2[i])) map2.set(str2[i], map2.get(str2[i]) + 1);
+          else map2.set(str2[i], 1);
+        }
+
+        for (let [key, value] of map1.entries()) {
+          if (map2.get(key) === value) continue;
+          else return 'NO';
+        }
+
+        return answer;
+      }
+
+      function solution(str1, str2) {
+        let answer = 'YES';
+        let sH = new Map();
+        for (let x of str1) {
+          if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+          else sH.set(x, 1);
+        }
+
+        for (let x of str2) {
+          if (!sH.has(x) || sH.get(x) === 0) return 'No';
+          sH.set(x, sH.get(x) - 1);
+        }
+
+        return answer;
+      }
+
+      let a = 'AbaAeCe';
+      let b = 'baeeACA';
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
