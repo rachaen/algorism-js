@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(need, plan) {
+        let answer = 'NO';
+        let queue = [];
+        let cnt = 0;
+        for (x of plan) {
+          queue.push(x);
+        }
+        while (queue.length > 0) {
+          if (queue.shift() === need[cnt]) cnt++;
+          if (cnt === need.length) {
+            answer = 'YES';
+            break;
+          }
+        }
+        return answer;
+      }
+
+      function solution(need, plan) {
+        let answer = 'YES';
+        let queue = need.split('');
+
+        for (let x of plan) {
+          if (queue.includes(x)) {
+            if (x !== queue.shift()) return 'NO';
+          }
+        }
+        if (queue.length > 0) return 'NO';
+
+        return answer;
+      }
+      let a = 'CBA';
+      let b = 'CBDAGE';
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
