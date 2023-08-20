@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // m: 제한 시간
+      function mySolution(m, ps, pt) {
+        let answer = 0;
+        let n = ps.length;
+        function DFS(l, score, time) {
+          if (l === n) return;
+          else {
+            answer = Math.max(answer, score);
+            if (time + pt[l] <= m) {
+              DFS(l + 1, score + ps[l], time + pt[l]);
+            }
+            DFS(l + 1, score, time);
+          }
+        }
+
+        DFS(0, 0, 0);
+        return answer;
+      }
+
+      function solution(m, ps, pt) {
+        let answer = Number.MIN_SAFE_INTEGER;
+        let n = ps.length;
+
+        function DFS(L, sum, time) {
+          if (time > m) return;
+          if (L === n) {
+            answer = Math.max(answer, sum);
+          } else {
+            DFS(L + 1, sum + ps[L], time + pt[L]);
+            DFS(L + 1, sum, time);
+          }
+        }
+
+        DFS(0, 0, 0);
+        return answer;
+      }
+
+      let ps = [10, 25, 15, 6, 7]; // 점수
+      let pt = [5, 12, 8, 3, 4]; // 시간
+      console.log(solution(20, ps, pt));
+    </script>
+  </body>
+</html>
