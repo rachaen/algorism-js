@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function mySolution(n) {
+        function DFS(num) {
+          if (num > n) {
+            return;
+          } else {
+            console.log(num);
+            DFS(num + 1);
+          }
+        }
+        DFS(1);
+      }
+
+      function solution(n) {
+        function DFS(L) {
+          if (L == 0) return;
+          else {
+            // console.log(L); // 3 2 1
+            DFS(L - 1);
+            console.log(L); // 1 2 3
+          }
+        }
+        DFS(n);
+      }
+      solution(3);
+    </script>
+  </body>
+</html>
