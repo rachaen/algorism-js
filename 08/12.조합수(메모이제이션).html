@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 5C3 = 4C2 + 4C3
+      function solution(n, r) {
+        function DFS(L) {
+          let answer;
+
+          function DFS(n, r) {
+            if (n === r || r === 0) return 1;
+            else return DFS(n - 1, r - 1) + DFS(n - 1, r);
+          }
+
+          answer = DFS(n, r);
+          return answer;
+        }
+
+        return answer;
+      }
+
+      // 메모이제이션
+      function solution2(n, r) {
+        let answer;
+        let dy = Array.from(Array(35), () => Array(35).fill(0)); // 35행 35열 2차원배열
+        function DFS(n, r) {
+          if (dy[n][r] > 0) return dy[n][r];
+          if (n === r || r === 0) return 1;
+          else return (dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r));
+        }
+
+        answer = DFS(n, r);
+        return answer;
+      }
+
+      console.log(solution(5, 3));
+    </script>
+  </body>
+</html>
